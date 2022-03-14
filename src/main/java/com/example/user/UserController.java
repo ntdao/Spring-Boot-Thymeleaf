@@ -1,5 +1,6 @@
 package com.example.user;
 
+import com.example.role.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -39,7 +40,9 @@ public class UserController {
     public String showEditForm(@PathVariable("id") Integer id, Model model, RedirectAttributes ra){
         try{
             User user = service.get(id);
+            List<Role> listRoles = service.listRoles();
             model.addAttribute("user",user);
+            model.addAttribute("listRoles", listRoles);
             model.addAttribute("pageTitle","Edit User (ID : " + id + ")");
             return "user_form";
         } catch(UserNotFoundException e){
@@ -56,7 +59,6 @@ public class UserController {
 
         } catch(UserNotFoundException e){
             ra.addFlashAttribute("message", e.getMessage());
-
         }
         return "redirect:/users";
     }

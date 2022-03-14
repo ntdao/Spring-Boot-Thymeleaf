@@ -1,6 +1,10 @@
 package com.example.user;
 
+import com.example.role.Role;
+
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -21,7 +25,13 @@ public class User {
     @Column(nullable = false, length = 45, name = "last_name")
     private String lastName;
 
-    private boolean enabled;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "user_role",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+
+    private Set<Role> roles = new HashSet<>();
 
     public Integer getId() {
         return id;
@@ -63,13 +73,17 @@ public class User {
         this.lastName = lastName;
     }
 
-    public boolean isEnabled() {
-        return enabled;
+    public Set<Role> getRole() {
+        return roles;
     }
 
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
+    public void setRole(Set<Role> roles) {
+        this.roles = roles;
     }
+
+//    public void addRole(Role role){
+//        this.roles.add(role);
+//    }
 
     @Override
     public String toString() {
@@ -79,6 +93,7 @@ public class User {
                 ", password='" + password + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
+                ", roles=" + roles +
                 '}';
     }
 }
