@@ -3,11 +3,12 @@ package com.example.user;
 import com.example.role.Role;
 
 import javax.persistence.*;
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 @Entity
-@Table(name = "users")
+@Table(name = "user")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,7 +32,7 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
 
-    private Set<Role> roles = new HashSet<>();
+    private List<Role> roles = new ArrayList<>();
 
     public Integer getId() {
         return id;
@@ -73,15 +74,15 @@ public class User {
         this.lastName = lastName;
     }
 
-    public Set<Role> getRole() {
+    public List<Role> getRoles() {
         return roles;
     }
 
-    public void setRole(Set<Role> roles) {
+    public void setRoles(List<Role> roles) {
         this.roles = roles;
     }
 
-//    public void addRole(Role role){
+    //    public void addRole(Role role){
 //        this.roles.add(role);
 //    }
 
