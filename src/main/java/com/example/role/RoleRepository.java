@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface RoleRepository extends CrudRepository<Role,Integer> {
-    public Long countRoleById(Integer role_id);
+    Integer countRoleById(Integer role_id);
 }

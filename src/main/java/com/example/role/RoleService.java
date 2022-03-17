@@ -27,7 +27,7 @@ public class RoleService {
     }
 
     public void delete(Integer id) throws RoleNotFoundException {
-        Long count = repo.countRoleById(id);
+        Integer count = repo.countRoleById(id);
         if(count == null || count == 0){
             throw new RoleNotFoundException("Could not find any roles with ID "+ id);
         }

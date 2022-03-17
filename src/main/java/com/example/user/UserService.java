@@ -34,7 +34,7 @@ public class UserService {
     }
 
     public void delete(Integer id) throws UserNotFoundException {
-        Long count = userRepo.countById(id);
+        Integer count = userRepo.countById(id);
         if(count == null || count == 0){
             throw new UserNotFoundException("Could not find any users with ID "+ id);
         }

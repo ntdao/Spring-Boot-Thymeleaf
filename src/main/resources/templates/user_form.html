@@ -40,9 +40,6 @@
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label">Role</label>
                 <div class="col-sm-8">
-<!--                    <input type="checkbox" th:field="*{roles}" th:text="admin" th:value="1" class="m-2">-->
-<!--                    <input type="checkbox" th:field="*{roles}" th:text="user" th:value="2" class="m-2">-->
-<!--                    <input type="checkbox" th:field="*{roles}" th:text="customer" th:value="3" class="m-2">-->
                     <th:block th:each="role: ${listRoles}">
                         <input type="checkbox" th:field="*{roles}"
                                th:text="${role.name}" th:value="${role.id}" class="m-2" />
